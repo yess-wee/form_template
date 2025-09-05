@@ -22,48 +22,55 @@ Add the package to your `pubspec.yaml`:
 ---
 ## 📦 Usage
 
-EasyFormBuilder(
-    title: "Contact Form",
-    fields: [
-        TextFieldConfig(
+```dart
+FormBuilder(
+        fields: [
+          TextFieldConfig(
             key: "name",
-            label: "Full Name*",
+            label: "FULL NAME*",
             isRequired: true,
-        ),
-        TextFieldConfig(
+          ),
+          TextFieldConfig(
             key: "email",
-            label: "Email Address*",
+            label: "EMAIL*",
             isRequired: true,
-        ),
-        DropdownConfig(
-            key: "country",
-            label: "Country",
-            options: []
-                OptionItem(label: "USA", value: "us"),
-                OptionItem(label: "Canada", value: "ca"),
-                OptionItem(label: "UK", value: "uk"),
-                ,
-        ),
-        CheckboxConfig(
-            key: "newsletter",
-            label: "Subscribe to newsletter",
-        ),
-        DatePickerConfig(
+          ),
+          DropdownConfig(
+            key: "department",
+            label: "DEPARTMENT",
+            options: [
+              OptionItem(label: "IT", value: "it"),
+              OptionItem(label: "ADMIN", value: "admin"),
+              OptionItem(label: "HR", value: "hr"),
+            ],
+          ),
+          CheckboxConfig(
+            key: "eligible",
+            label: "ELIGIBLE?",
+          ),
+          DatePickerConfig(
             key: "birthdate",
-            label: "Birth Date",
+            label: "DATE OF BIRTH",
             enableFutureDates: false,
-        ),
-        TimePickerConfig(
+          ),
+          TimePickerConfig(
             key: "preferred_time",
-            label: "SELECT TIME",
-        ),
-        TextAreaConfig(
+            label: "MEETING TIME",
+          ),
+          TextAreaConfig(
             key: "message",
-            label: "Message",
+            label: "MESSAGE",
             maxLines: 5,
-        ),
-    ],
-    onSubmit: (data) {
-    print("Form submitted: $data");
-    },
-)
+          ),
+        ],
+        onSubmit: (formData) {
+          print("Form submitted: $formData");
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Form submitted successfully!"),
+              backgroundColor: Colors.green,
+            ),
+          );
+       },
+      )
+
